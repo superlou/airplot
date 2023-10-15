@@ -18,20 +18,18 @@ def main():
     df = make_dummy_df()
     print(df)
 
-    airplot = Airplot(df, {
-        "axes": [
-            {
-                "range": [0, 50],
-                "position": [0.6, 0.9],
-                "columns": ["flaps_left", "flaps_right"],
-            },
-            {
-                "range": [-10, 20],
-                "position": [0.1, 0.5],
-                "columns": ["pitch"]
-            }
-        ]
-    })
+    airplot = Airplot(df, axes_cfgs=[
+        {
+            "range": [0, 50],
+            "position": [0.6, 0.9],
+            "columns": ["flaps_left", "flaps_right"],
+        },
+        {
+            "range": [-10, 20],
+            "position": [0.1, 0.5],
+            "columns": ["pitch"]
+        }
+    ])
     airplot.show()
 
 
