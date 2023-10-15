@@ -25,7 +25,12 @@ def shifty(axes, fig_range):
     axes.set_yticks(ticker.tick_values(d0, d1))
 
     position_type, position = axes.spines["left"].get_position()
-    axes.yaxis.set_label_coords(position - 0.05, np.mean([y0, y1]))
+
+    # Set the yaxis label position without margin changing as the window resizes    
+    pos = axes.yaxis.label.get_position()
+    x = pos[0]
+    y = np.mean([y0, y1])
+    axes.yaxis.label.set_position((x, y))
 
 
 class Airplot:
@@ -55,6 +60,7 @@ class Airplot:
             shifty(twin, axes_cfg["position"])            
 
         fig.set_layout_engine("tight")
+        fig.align_labels()
 
         # fig, ax = plt.subplots()
         # check_buttons = CheckButtons(
